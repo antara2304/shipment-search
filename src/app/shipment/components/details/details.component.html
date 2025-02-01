@@ -1,1 +1,80 @@
-<p>details works!</p>
+<div class="container">
+  <div class="top-nav">
+    <div class="back">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+        <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+        <path
+          d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"
+        />
+      </svg>
+    </div>
+    <div class="text">
+      <div class="text-row">Shipment Summary</div>
+      <div class="text-row">Shipment Summary</div>
+    </div>
+    <div class="close">
+      <button type="submit" class="btn btn-outline-primary btn-sm">
+        Close
+      </button>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="content__row">
+      <div class="column">testing1</div>
+      <div class="column">testing2</div>
+    </div>
+  </div>
+  <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+    <div class="content__row">
+      <div class="column">testing1</div>
+      <div class="column">testing2</div>
+    </div>
+    <div class="content__row">
+      <div class="column">testing1</div>
+      <div class="column">testing2</div>
+    </div>
+    <div class="content__row">
+      <div class="column">testing1</div>
+      <div class="column">testing2</div>
+    </div>
+  </div>
+  <button
+    type="button"
+    class="btn btn-link"
+    (click)="collapse.toggle()"
+    [attr.aria-expanded]="!isCollapsed"
+    aria-controls="collapseExample"
+  >
+    <span *ngIf="!isCollapsed"> hide info </span>
+    <span *ngIf="isCollapsed"> show info </span>
+  </button>
+
+  <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+    <li [ngbNavItem]="1">
+      <button ngbNavLink>Product{{ active }}</button>
+      <ng-template ngbNavContent>
+        <div class="content__row">
+          <div class="product">
+            <div class="image"></div>
+            <div class="product__details">
+              <div>testing</div>
+              <div>testing</div>
+              <div>testing</div>
+            </div>
+          </div>
+          <div class="product">
+            <div class="image"></div>
+            <div class="product__details">
+              <div>testing</div>
+              <div>testing</div>
+              <div>testing</div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </li>
+  </ul>
+
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+</div>
