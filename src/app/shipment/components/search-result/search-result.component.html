@@ -1,1 +1,95 @@
-<p>search-result works!</p>
+<div class="container">
+  <!-- Popover Content -->
+  <ng-template #popoverContent>
+    <div>Status</div>
+    <div *ngFor="let item of items">
+      <label class="dropdown-item">
+        <input
+          type="checkbox"
+          [checked]="isItemSelected(item)"
+          (change)="toggleItem(item)"
+          class="mr-2"
+        />
+        {{ item }}
+      </label>
+    </div>
+  </ng-template>
+
+  <!-- Display selected items -->
+  <div class="mt-3"><strong>Selected: </strong> {{ displaySelected() }}</div>
+
+  <div class="top-nav">
+    <div class="back">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+        <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+        <path
+          d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"
+        />
+      </svg>
+    </div>
+    <div class="text">Shipment search results</div>
+    <div class="close">
+      <button type="submit" class="btn btn-outline-primary btn-sm">
+        Close
+      </button>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="total-result">{{ total }} results</div>
+    <div
+      class="filter"
+      [ngbPopover]="popoverContent"
+      popoverTitle="Refine"
+      triggers="click"
+      placement="left"
+      [autoClose]="'outside'"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+        <path
+          d="M3.9 54.9C10.5 40.9 24.5 32 40 32l432 0c15.5 0 29.5 8.9 36.1 22.9s4.6 30.5-5.2 42.5L320 320.9 320 448c0 12.1-6.8 23.2-17.7 28.6s-23.8 4.3-33.5-3l-64-48c-8.1-6-12.8-15.5-12.8-25.6l0-79.1L9 97.3C-.7 85.4-2.8 68.8 3.9 54.9z"
+        />
+      </svg>
+      <div class="applied-filter">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+          <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+          <path
+            d="M64 80c-8.8 0-16 7.2-16 16l0 320c0 8.8 7.2 16 16 16l320 0c8.8 0 16-7.2 16-16l0-320c0-8.8-7.2-16-16-16L64 80zM0 96C0 60.7 28.7 32 64 32l320 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96zM337 209L209 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L303 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="data-container" *ngIf="data.length">
+    <div *ngFor="let item of data" class="item">
+      <div class="column">
+        <div class="row-header">{{ item }}</div>
+        <div class="row">{{ item }}</div>
+        <div class="row">{{ item }}</div>
+        <div class="row">{{ item }}</div>
+      </div>
+      <div class="column">
+        <div class="row-header">{{ item }}</div>
+        <div class="row">{{ item }}</div>
+        <div class="row">{{ item }}</div>
+      </div>
+      <div class="column">
+        <div class="row-header">{{ item }}</div>
+        <div class="row">{{ item }}</div>
+        <div class="row">{{ item }}</div>
+        <div class="row">{{ item }}</div>
+      </div>
+    </div>
+    <div
+      *ngIf="!loading"
+      infiniteScroll
+      [infiniteScrollDistance]="scrollDistance"
+      [infiniteScrollUpDistance]="scrollUpDistance"
+      (scrolled)="loadMoreData()"
+    ></div>
+    <!-- Loading Indicator -->
+    <div *ngIf="loading" class="loading">Loading...</div>
+  </div>
+</div>

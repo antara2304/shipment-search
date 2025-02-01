@@ -26,6 +26,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient],
       },
     }),
+
     SharedModule,
   ],
   providers: [],
