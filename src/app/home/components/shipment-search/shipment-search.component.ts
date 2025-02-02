@@ -27,15 +27,21 @@ export class ShipmentSearchComponent {
 
   async onSearch() {
     console.log(this.formData);
-    let data = await this.dataSvc.getShipmentList();
+    let data: any = await this.dataSvc.getShipmentList();
 
     console.log(data);
     if (Object.keys(this.formData).length) {
       data = this.applyFilter(data['shipmentList']['Shipments']['Shipment']);
-      await this.dataSvc.setData(data);
-      this.router.navigate(['shipment/result']);
     } else if (Object.keys(data).length) {
-      await this.dataSvc.setData(data['shipmentList']['Shipments']['Shipment']);
+      data = data['shipmentList']['Shipments']['Shipment'];
+    }
+
+    await this.dataSvc.setData(data);
+    if (data.length === 1) {
+      let _data = await this.dataSvc.getShipment(data[0].AssignedToUserId);
+      this.dataSvc.setShipmentData(_data);
+      this.router.navigate(['shipment/view']);
+    } else {
       this.router.navigate(['shipment/result']);
     }
   }
@@ -43,7 +49,6 @@ export class ShipmentSearchComponent {
     let _data = data.filter((shipment: any) => {
       let isMatch = true;
 
-      // Filter based on the form fields (including nested BillToAddress)
       if (
         this.formData.OrderNo &&
         !shipment.OrderNo.toLowerCase().includes(
@@ -102,5 +107,17 @@ export class ShipmentSearchComponent {
     });
     console.log(_data);
     return _data;
+  }
+  onReset() {
+    this.formData = {
+      OrderNo: '',
+      ShipmentNo: '',
+      BillToAddress: {
+        FirstName: '',
+        LastName: '',
+        EMailID: '',
+        DayPhone: '',
+      },
+    };
   }
 }

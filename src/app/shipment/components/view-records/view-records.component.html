@@ -9,7 +9,9 @@
       {{ item.ShipmentLines.TotalNumberOfRecords }} Products
     </div>
     <div class="row">Carrier: {{ item.ScacAndService }}</div>
-    <div class="row">Shipment # {{ item.ShipmentNo }}</div>
+    <div class="row" (click)="onItemClick(item.AssignedToUserId)">
+      Shipment # <span class="hyperlink">{{ item.ShipmentNo }}</span>
+    </div>
   </div>
   <div class="column">
     <div class="row-header">{{ item.Status }}</div>

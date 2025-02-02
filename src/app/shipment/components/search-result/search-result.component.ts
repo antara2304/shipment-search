@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/shared/services/data.service';
 
 @Component({
@@ -22,7 +22,11 @@ export class SearchResultComponent implements OnInit {
 
   private dataSource: any = [];
   private copyOfDs: any = [];
-  constructor(private route: ActivatedRoute, private dataSvc: DataService) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private dataSvc: DataService
+  ) {}
   ngOnInit() {
     this.dataSource = this.dataSvc.getData();
     this.copyOfDs = [...this.dataSource];
@@ -76,5 +80,9 @@ export class SearchResultComponent implements OnInit {
 
   displaySelected(): string {
     return this.selectedItems.join(', ') || 'None'; // Display selected items
+  }
+
+  backToSearchPage() {
+    this.router.navigate(['home']);
   }
 }

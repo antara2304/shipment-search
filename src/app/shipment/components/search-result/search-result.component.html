@@ -1,6 +1,6 @@
 <div class="container">
   <div class="top-nav">
-    <div class="back">
+    <div class="back" (click)="backToSearchPage()">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
         <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
         <path
@@ -9,7 +9,7 @@
       </svg>
     </div>
     <div class="text">Shipment search results</div>
-    <div class="close">
+    <div class="close" (click)="backToSearchPage()">
       <button type="submit" class="btn btn-outline-primary btn-sm">
         Close
       </button>
