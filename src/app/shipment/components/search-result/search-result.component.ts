@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/shared/services/data.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-search-result',
@@ -25,7 +26,8 @@ export class SearchResultComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private dataSvc: DataService
+    private dataSvc: DataService,
+    private translate: TranslateService
   ) {}
   ngOnInit() {
     this.dataSource = this.dataSvc.getData();

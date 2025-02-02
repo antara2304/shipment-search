@@ -10,6 +10,7 @@ import {
   NgbPopoverModule,
 } from '@ng-bootstrap/ng-bootstrap';
 import { ViewRecordsComponent } from './components/view-records/view-records.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [SearchResultComponent, DetailsComponent, ViewRecordsComponent],
@@ -20,6 +21,7 @@ import { ViewRecordsComponent } from './components/view-records/view-records.com
     NgbPopoverModule,
     NgbCollapse,
     NgbNavModule,
+    TranslateModule,
   ],
 })
 export class ShipmentModule {}

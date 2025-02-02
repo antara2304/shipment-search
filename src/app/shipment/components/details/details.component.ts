@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/shared/services/data.service';
 import { Location } from '@angular/common';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-details',
@@ -16,7 +17,8 @@ export class DetailsComponent implements OnInit {
   constructor(
     private router: Router,
     private dataSvc: DataService,
-    private _location: Location
+    private _location: Location,
+    private translate: TranslateService
   ) {}
 
   ngOnInit() {

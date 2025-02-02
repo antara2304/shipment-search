@@ -8,6 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { ShipmentTranslateHttpLoader } from './app.translation.loader';
 import { SharedModule } from './shared/shared.module';
+// import { LABEL_WhatDoYouWantToDO } from '../assets/i18n/en.json';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new ShipmentTranslateHttpLoader(http, './assets/i18n/', '.json'); // Path to your translation files

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/shared/services/data.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-shipment-search',
@@ -19,10 +20,14 @@ export class ShipmentSearchComponent {
     },
   };
   constructor(
+    private translate: TranslateService,
     private dataSvc: DataService,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) {
+    translate.setDefaultLang('en');
+    translate.use('en');
+  }
   openModal(value: any) {}
 
   async onSearch() {

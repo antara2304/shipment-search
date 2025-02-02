@@ -9,6 +9,6 @@ export class ShipmentTranslateHttpLoader implements TranslateLoader {
     public suffix: string = '.json'
   ) {}
   public getTranslation(lang: string): Observable<any> {
-    return this.http.get('http//localhost:4200', { withCredentials: true });
+    return this.http.get(`${this.prefix}en.json`, { withCredentials: true });
   }
 }
