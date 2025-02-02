@@ -1,0 +1,23 @@
+<div *ngFor="let item of data" class="item">
+  <div class="column">
+    <div class="row-header">{{ item.OrderNo }}</div>
+    <div class="row">
+      {{ item.ShipmentLines.TotalNumberOfRecords }} Products
+    </div>
+    <div class="row">Carrier: {{ item.ScacAndService }}</div>
+    <div class="row">Shipment # {{ item.ShipmentNo }}</div>
+  </div>
+  <div class="column">
+    <div class="row-header">{{ item.Status }}</div>
+    <div class="row">{{ item.AssignedToUserId }}</div>
+    <div class="row">{{ item.ExpectedShipmentDate }}</div>
+  </div>
+  <div class="column">
+    <div class="row-header">Customer Info</div>
+    <div class="row">
+      {{ item.BillToAddress.FirstName + " " + item.BillToAddress.LastName }}
+    </div>
+    <div class="row">{{ item.BillToAddress.DayPhone }}</div>
+    <div class="row">{{ item.BillToAddress.EMailID }}</div>
+  </div>
+</div>

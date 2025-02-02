@@ -9,9 +9,10 @@ import {
   NgbNavModule,
   NgbPopoverModule,
 } from '@ng-bootstrap/ng-bootstrap';
+import { ViewRecordsComponent } from './components/view-records/view-records.component';
 
 @NgModule({
-  declarations: [SearchResultComponent, DetailsComponent],
+  declarations: [SearchResultComponent, DetailsComponent, ViewRecordsComponent],
   imports: [
     CommonModule,
     ShipmentRoutingModule,

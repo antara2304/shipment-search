@@ -18,21 +18,27 @@ export class SearchResultComponent implements OnInit {
   prev: number = 0;
 
   selectedItems: string[] = []; // Holds selected items
-  items = ['Option 1Option 1', 'Option 2 Option 2', 'Option 3', 'Option 4']; // Dropdown options
+  items: any;
 
   private dataSource: any = [];
+  private copyOfDs: any = [];
   constructor(private route: ActivatedRoute, private dataSvc: DataService) {}
   ngOnInit() {
     this.dataSource = this.dataSvc.getData();
-    this.total = this.dataSource.length;
+    this.copyOfDs = [...this.dataSource];
+    this.total = this.copyOfDs.length;
+    this.items = [...new Set(this.dataSource.map((item: any) => item.Status))];
+    // this.selectedItems = this.items;
     this.loadMoreData();
   }
   loadMoreData() {
     if (this.loading) return;
     this.loading = true;
+    console.log(this.copyOfDs);
+    console.log(this.data);
 
     setTimeout(() => {
-      const newData = this.dataSource.slice(this.prev, this.page);
+      const newData = this.copyOfDs.slice(this.prev, this.page);
       this.data = [...this.data, ...newData];
       console.log(this.data);
       this.prev = this.page;
@@ -48,6 +54,20 @@ export class SearchResultComponent implements OnInit {
     } else {
       this.selectedItems.splice(index, 1); // Remove item from the selected list
     }
+    console.log(this.selectedItems);
+    if (this.selectedItems.length) {
+      this.copyOfDs = this.dataSource.filter((each: any) =>
+        this.selectedItems.includes(each.Status)
+      );
+    } else {
+      this.copyOfDs = [...this.dataSource];
+    }
+    this.total = this.copyOfDs.length;
+    this.data = [];
+    this.prev = 0;
+    this.page = 10;
+    console.log(this.copyOfDs);
+    this.loadMoreData();
   }
 
   isItemSelected(item: string): boolean {
