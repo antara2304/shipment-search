@@ -15,18 +15,14 @@ export class DataService {
   }
 
   setData(_data: any) {
-    console.log(_data);
     this.data = _data;
-    console.log(this.data);
   }
   getData() {
-    console.log(this.data);
     return this.data;
   }
 
   async getShipment(itemID: any) {
     const data: any = await this.http.get('assets/mock.json').toPromise();
-    console.log(data);
     let result = data['Shipment'].find(
       (item: any) => item.AssignedToUserId === itemID
     );

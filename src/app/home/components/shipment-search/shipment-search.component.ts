@@ -31,10 +31,8 @@ export class ShipmentSearchComponent {
   openModal(value: any) {}
 
   async onSearch() {
-    console.log(this.formData);
     let data: any = await this.dataSvc.getShipmentList();
 
-    console.log(data);
     if (Object.keys(this.formData).length) {
       data = this.applyFilter(data['shipmentList']['Shipments']['Shipment']);
     } else if (Object.keys(data).length) {
@@ -110,7 +108,6 @@ export class ShipmentSearchComponent {
 
       return isMatch;
     });
-    console.log(_data);
     return _data;
   }
   onReset() {

@@ -17,9 +17,7 @@ export class ViewRecordsComponent {
   ) {}
 
   async onItemClick(itemID: any) {
-    console.log(itemID);
     let data = await this.dataSvc.getShipment(itemID);
-    console.log(data);
     this.dataSvc.setShipmentData(data);
     this.router.navigate(['shipment/view']);
   }

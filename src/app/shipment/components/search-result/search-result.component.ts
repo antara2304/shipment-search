@@ -40,13 +40,10 @@ export class SearchResultComponent implements OnInit {
   loadMoreData() {
     if (this.loading) return;
     this.loading = true;
-    console.log(this.copyOfDs);
-    console.log(this.data);
 
     setTimeout(() => {
       const newData = this.copyOfDs.slice(this.prev, this.page);
       this.data = [...this.data, ...newData];
-      console.log(this.data);
       this.prev = this.page;
       this.page += 10;
       this.loading = false;
@@ -60,7 +57,6 @@ export class SearchResultComponent implements OnInit {
     } else {
       this.selectedItems.splice(index, 1); // Remove item from the selected list
     }
-    console.log(this.selectedItems);
     if (this.selectedItems.length) {
       this.copyOfDs = this.dataSource.filter((each: any) =>
         this.selectedItems.includes(each.Status)
@@ -72,7 +68,6 @@ export class SearchResultComponent implements OnInit {
     this.data = [];
     this.prev = 0;
     this.page = 10;
-    console.log(this.copyOfDs);
     this.loadMoreData();
   }
 

@@ -12,7 +12,7 @@
       <div class="text-row">
         {{ "shipment.LABEL_ShipmentSummary" | translate }}
       </div>
-      <div class="text-row">{{ data.OrderNo }}</div>
+      <div class="text-row">{{ data?.OrderNo }}</div>
     </div>
     <div class="close">
       <button
@@ -29,15 +29,15 @@
     <div class="content__row">
       <div class="column">
         <div class="label">Shipment #</div>
-        <div>{{ data.ShipmentNo }}</div>
+        <div>{{ data?.ShipmentNo }}</div>
       </div>
       <div class="column">
         <div class="label">Expected Shipment Date</div>
-        <div>{{ data.ExpectedShipmentDate }}</div>
+        <div>{{ data?.ExpectedShipmentDate }}</div>
       </div>
       <div class="column mobile-view" *ngIf="isCollapsed">
         <div class="label">Ship to</div>
-        <div>{{ data.BillToAddress.AddressLine1 }}</div>
+        <div>{{ data?.BillToAddress?.AddressLine1 }}</div>
       </div>
     </div>
   </div>
@@ -45,15 +45,15 @@
     <div class="content__row">
       <div class="column">
         <div class="label">Carrier</div>
-        <div>{{ data.ScacAndService }}</div>
+        <div>{{ data?.ScacAndService }}</div>
       </div>
       <div class="column">
         <div class="label">Customer Info</div>
         <div>
-          {{ data.ToAddress.FirstName + " " + data.ToAddress.LastName }}
+          {{ data?.ToAddress?.FirstName + " " + data?.ToAddress?.LastName }}
         </div>
-        <div>{{ data.ToAddress.DayPhone }}</div>
-        <div>{{ data.ToAddress.EmailID }}</div>
+        <div>{{ data?.ToAddress?.DayPhone }}</div>
+        <div>{{ data?.ToAddress?.EmailID }}</div>
       </div>
     </div>
     <div class="content__row">
@@ -66,38 +66,38 @@
       <div class="column">
         <div class="label">Ship to</div>
         <div>
-          {{ data.ToAddress.FirstName + " " + data.ToAddress.LastName }}
+          {{ data?.ToAddress?.FirstName + " " + data?.ToAddress?.LastName }}
         </div>
-        <div>{{ data.ToAddress.AddressLine1 }}</div>
-        <div>{{ data.ToAddress.AddressLine2 }}</div>
+        <div>{{ data?.ToAddress?.AddressLine1 }}</div>
+        <div>{{ data?.ToAddress?.AddressLine2 }}</div>
         <div>
           {{
-            data.ToAddress.City +
+            data?.ToAddress?.City +
               ", " +
-              data.ToAddress.State +
+              data?.ToAddress?.State +
               ", " +
-              data.ToAddress.ZipCode
+              data?.ToAddress?.ZipCode
           }}
         </div>
-        <div>{{ data.ToAddress.country }}</div>
+        <div>{{ data?.ToAddress?.country }}</div>
       </div>
       <div class="column">
         <div class="label">Bill To</div>
         <div>
-          {{ data.ToAddress.FirstName + " " + data.ToAddress.LastName }}
+          {{ data?.ToAddress?.FirstName + " " + data?.ToAddress?.LastName }}
         </div>
-        <div>{{ data.ToAddress.AddressLine1 }}</div>
-        <div>{{ data.ToAddress.AddressLine2 }}</div>
+        <div>{{ data?.ToAddress?.AddressLine1 }}</div>
+        <div>{{ data?.ToAddress?.AddressLine2 }}</div>
         <div>
           {{
-            data.ToAddress.City +
+            data?.ToAddress?.City +
               ", " +
-              data.ToAddress.State +
+              data?.ToAddress?.State +
               ", " +
-              data.ToAddress.ZipCode
+              data?.ToAddress?.ZipCode
           }}
         </div>
-        <div>{{ data.ToAddress.country }}</div>
+        <div>{{ data?.ToAddress?.country }}</div>
       </div>
     </div>
   </div>
@@ -115,12 +115,12 @@
   <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
     <li [ngbNavItem]="1">
       <button ngbNavLink>
-        Product {{ data.ShipmentLines.TotalNumberOfRecords }}
+        Product {{ data?.ShipmentLines?.TotalNumberOfRecords }}
       </button>
       <ng-template ngbNavContent>
         <div
           class="content__row"
-          *ngFor="let product of data.ShipmentLines.ShipmentLine"
+          *ngFor="let product of data?.ShipmentLines?.ShipmentLine"
         >
           <div class="product">
             <div class="image">
@@ -130,11 +130,14 @@
               />
             </div>
             <div class="product__details">
-              <div>{{ product.OrderLine.ItemDetails.Description }}</div>
-              <div>Product ID: {{ product.OrderLine.ItemDetails.ItemId }}</div>
-              <div>Quantity: {{ product.Quantity }}</div>
+              <div>{{ product?.OrderLine?.ItemDetails?.Description }}</div>
               <div>
-                Packed: {{ product.OrderLine.ItemDetails.DisplayUnitOfMeasure }}
+                Product ID: {{ product?.OrderLine?.ItemDetails?.ItemId }}
+              </div>
+              <div>Quantity: {{ product?.Quantity }}</div>
+              <div>
+                Packed:
+                {{ product?.OrderLine?.ItemDetails?.DisplayUnitOfMeasure }}
               </div>
             </div>
           </div>
