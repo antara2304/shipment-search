@@ -35,7 +35,7 @@
         <div class="label">Expected Shipment Date</div>
         <div>{{ data.ExpectedShipmentDate }}</div>
       </div>
-      <div class="column" *ngIf="isCollapsed">
+      <div class="column mobile-view" *ngIf="isCollapsed">
         <div class="label">Ship to</div>
         <div>{{ data.BillToAddress.AddressLine1 }}</div>
       </div>
