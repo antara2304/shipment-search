@@ -57,13 +57,17 @@
         placeholder="Phone number"
       />
     </div>
-    <div class="form-btn d-flex justify-content-end">
-      <button type="submit" class="btn btn-outline-primary btn-sm ms-2 w-25">
-        Reset
-      </button>
-      <button type="submit" class="btn btn-primary btn-sm ms-2 w-25">
-        Search
-      </button>
-    </div>
   </form>
+  <div class="form-btn d-flex justify-content-end">
+    <button type="submit" class="btn btn-outline-primary btn-sm ms-2 w-25">
+      Reset
+    </button>
+    <button
+      type="submit"
+      class="btn btn-primary btn-sm ms-2 w-25"
+      (click)="onSearch()"
+    >
+      Search
+    </button>
+  </div>
 </div>

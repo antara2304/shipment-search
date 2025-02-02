@@ -1,40 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { DataService } from 'src/app/shared/services/data.service';
 
 @Component({
   selector: 'app-search-result',
   templateUrl: './search-result.component.html',
   styleUrls: ['./search-result.component.sass'],
 })
-export class SearchResultComponent {
-  data: string[] = []; // Holds the content to display
-  page: number = 1; // Current page for API calls or data fetching
+export class SearchResultComponent implements OnInit {
+  data: any = []; // Holds the content to display
+  page: number = 10; // Current page for API calls or data fetching
   loading: boolean = false; // Tracks loading status
   scrollDistance = 2;
   scrollUpDistance = 2;
   scrollMaxDistance = 2;
-  total = 101;
+  total: number = 0;
+  prev: number = 0;
 
   selectedItems: string[] = []; // Holds selected items
   items = ['Option 1Option 1', 'Option 2 Option 2', 'Option 3', 'Option 4']; // Dropdown options
 
-  constructor() {
+  private dataSource: any = [];
+  constructor(private route: ActivatedRoute, private dataSvc: DataService) {}
+  ngOnInit() {
+    this.dataSource = this.dataSvc.getData();
+    this.total = this.dataSource.length;
     this.loadMoreData();
   }
-
   loadMoreData() {
-    if (this.loading) return; // Avoid multiple requests
+    if (this.loading) return;
     this.loading = true;
 
-    // Simulate an API call to fetch more data
     setTimeout(() => {
-      const newData = Array.from(
-        { length: 20 },
-        (_, index) => `Item ${index + 1 + (this.page - 1) * 20}`
-      );
-      this.data = [...this.data, ...newData]; // Add new data to existing
-      this.page += 1; // Increase page for next request
-      this.loading = false; // Reset loading status
-    }, 1500); // Simulate a delay for loading
+      const newData = this.dataSource.slice(this.prev, this.page);
+      this.data = [...this.data, ...newData];
+      console.log(this.data);
+      this.prev = this.page;
+      this.page += 10;
+      this.loading = false;
+    }, 1500);
   }
 
   toggleItem(item: string) {

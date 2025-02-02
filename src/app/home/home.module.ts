@@ -6,6 +6,6 @@ import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [ShipmentSearchComponent],
-  imports: [CommonModule, HomeRoutingModule, SharedModule],
+  imports: [CommonModule, HomeRoutingModule],
 })
 export class HomeModule {}
