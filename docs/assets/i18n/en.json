@@ -1,0 +1,10 @@
+{
+  "home": {
+    "LABEL_WhatDoYouWantToDO": "What do you want to do?",
+    "LABEL_ShipmentSearch": "Shipment Search"
+  },
+  "shipment": {
+    "LABEL_Shipmentsearchresults": "Shipment search results",
+    "LABEL_ShipmentSummary": "Shipment Summary"
+  }
+}
