@@ -1,4 +1,8 @@
-<div *ngFor="let item of data" class="item">
+<div
+  *ngFor="let item of data"
+  class="item"
+  (click)="onItemClick(item.AssignedToUserId)"
+>
   <div class="column">
     <div class="row-header">{{ item.OrderNo }}</div>
     <div class="row">

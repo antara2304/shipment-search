@@ -21,22 +21,78 @@
 
   <div class="content">
     <div class="content__row">
-      <div class="column">testing1</div>
-      <div class="column">testing2</div>
+      <div class="column">
+        <div class="label">Shipment #</div>
+        <div>{{ data.ShipmentNo }}</div>
+      </div>
+      <div class="column">
+        <div class="label">Expected Shipment Date</div>
+        <div>{{ data.ExpectedShipmentDate }}</div>
+      </div>
+      <div class="column" *ngIf="isCollapsed">
+        <div class="label">Ship to</div>
+        <div>{{ data.BillToAddress.AddressLine1 }}</div>
+      </div>
     </div>
   </div>
   <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
     <div class="content__row">
-      <div class="column">testing1</div>
+      <div class="column">
+        <div class="label">Carrier</div>
+        <div>{{ data.ScacAndService }}</div>
+      </div>
+      <div class="column">
+        <div class="label">Customer Info</div>
+        <div>
+          {{ data.ToAddress.FirstName + " " + data.ToAddress.LastName }}
+        </div>
+        <div>{{ data.ToAddress.DayPhone }}</div>
+        <div>{{ data.ToAddress.EmailID }}</div>
+      </div>
+    </div>
+    <div class="content__row">
+      <div class="column">
+        <div class="label">Assigned To</div>
+      </div>
       <div class="column">testing2</div>
     </div>
     <div class="content__row">
-      <div class="column">testing1</div>
-      <div class="column">testing2</div>
-    </div>
-    <div class="content__row">
-      <div class="column">testing1</div>
-      <div class="column">testing2</div>
+      <div class="column">
+        <div class="label">Ship to</div>
+        <div>
+          {{ data.ToAddress.FirstName + " " + data.ToAddress.LastName }}
+        </div>
+        <div>{{ data.ToAddress.AddressLine1 }}</div>
+        <div>{{ data.ToAddress.AddressLine2 }}</div>
+        <div>
+          {{
+            data.ToAddress.City +
+              ", " +
+              data.ToAddress.State +
+              ", " +
+              data.ToAddress.ZipCode
+          }}
+        </div>
+        <div>{{ data.ToAddress.country }}</div>
+      </div>
+      <div class="column">
+        <div class="label">Bill To</div>
+        <div>
+          {{ data.ToAddress.FirstName + " " + data.ToAddress.LastName }}
+        </div>
+        <div>{{ data.ToAddress.AddressLine1 }}</div>
+        <div>{{ data.ToAddress.AddressLine2 }}</div>
+        <div>
+          {{
+            data.ToAddress.City +
+              ", " +
+              data.ToAddress.State +
+              ", " +
+              data.ToAddress.ZipCode
+          }}
+        </div>
+        <div>{{ data.ToAddress.country }}</div>
+      </div>
     </div>
   </div>
   <button
@@ -52,23 +108,28 @@
 
   <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
     <li [ngbNavItem]="1">
-      <button ngbNavLink>Product{{ active }}</button>
+      <button ngbNavLink>
+        Product {{ data.ShipmentLines.TotalNumberOfRecords }}
+      </button>
       <ng-template ngbNavContent>
-        <div class="content__row">
+        <div
+          class="content__row"
+          *ngFor="let product of data.ShipmentLines.ShipmentLine"
+        >
           <div class="product">
-            <div class="image"></div>
-            <div class="product__details">
-              <div>testing</div>
-              <div>testing</div>
-              <div>testing</div>
+            <div class="image">
+              <img
+                src="https://www.w3schools.com/images/lamp.jpg"
+                alt="testing"
+              />
             </div>
-          </div>
-          <div class="product">
-            <div class="image"></div>
             <div class="product__details">
-              <div>testing</div>
-              <div>testing</div>
-              <div>testing</div>
+              <div>{{ product.OrderLine.ItemDetails.Description }}</div>
+              <div>Product ID: {{ product.OrderLine.ItemDetails.ItemId }}</div>
+              <div>Quantity: {{ product.Quantity }}</div>
+              <div>
+                Packed: {{ product.OrderLine.ItemDetails.DisplayUnitOfMeasure }}
+              </div>
             </div>
           </div>
         </div>

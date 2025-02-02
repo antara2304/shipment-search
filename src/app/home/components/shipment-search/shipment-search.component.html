@@ -10,6 +10,8 @@
         class="form-control"
         id="order"
         placeholder="Order #"
+        name="order"
+        [(ngModel)]="formData.OrderNo"
       />
     </div>
 
@@ -19,6 +21,8 @@
         class="form-control"
         id="shipment"
         placeholder="Shipment #"
+        name="shipment"
+        [(ngModel)]="formData.ShipmentNo"
       />
     </div>
 
@@ -28,6 +32,8 @@
         class="form-control"
         id="firstName"
         placeholder="First Name"
+        name="firstName"
+        [(ngModel)]="formData.BillToAddress.FirstName"
       />
     </div>
 
@@ -37,6 +43,8 @@
         class="form-control"
         id="lastName"
         placeholder="Last Name"
+        name="lastName"
+        [(ngModel)]="formData.BillToAddress.LastName"
       />
     </div>
 
@@ -46,6 +54,8 @@
         class="form-control"
         id="email"
         placeholder="Email ID"
+        name="email"
+        [(ngModel)]="formData.BillToAddress.EMailID"
       />
     </div>
 
@@ -55,6 +65,8 @@
         class="form-control"
         id="phone"
         placeholder="Phone number"
+        name="phone"
+        [(ngModel)]="formData.BillToAddress.DayPhone"
       />
     </div>
   </form>
