@@ -24,7 +24,7 @@ export class DataService {
   async getShipment(itemID: any) {
     const data: any = await this.http.get('assets/mock.json').toPromise();
     let result = data['Shipment'].find(
-      (item: any) => item.AssignedToUserId === itemID
+      (item: any) => item.ShipmentNo === itemID
     );
     return result;
   }

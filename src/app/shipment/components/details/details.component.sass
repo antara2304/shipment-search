@@ -10,21 +10,42 @@
     width: 10px
 .content
     padding:5px
+    background-color: #f1f1f1
     &__row
         display: flex
         justify-content: space-between
+        background-color: #f1f1f1 
         .column
             display: flex
             flex-direction: column
             flex: 1 
+            margin-bottom: 5px
+.products
+    display: flex
+    justify-content: space-between
+    margin-bottom: 10px
+    padding: 10px
+    border-bottom: 1px solid #d4d4d4
+.label
+    font-size: 0.75rem
+.text
+    font-size: 0.875rem
         
 .btn-link
     float: right
 .product 
     display: flex
     gap: 10px
+    &__details
+        &__desc
+            color: #05b0c1
+            font-size: 0.875rem
+        &__text
+            font-size: 0.75rem
+
 .image
     width:100px
     height:100px
+    border: 1px solid #d4d4d4
     img
         width:100%

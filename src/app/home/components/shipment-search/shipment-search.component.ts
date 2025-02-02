@@ -41,7 +41,7 @@ export class ShipmentSearchComponent {
 
     await this.dataSvc.setData(data);
     if (data.length === 1) {
-      let _data = await this.dataSvc.getShipment(data[0].AssignedToUserId);
+      let _data = await this.dataSvc.getShipment(data[0].ShipmentNo);
       this.dataSvc.setShipmentData(_data);
       this.router.navigate(['shipment/view']);
     } else {

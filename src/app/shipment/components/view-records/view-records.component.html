@@ -1,7 +1,7 @@
 <div
   *ngFor="let item of data"
   class="item"
-  (click)="onItemClick(item.AssignedToUserId)"
+  (click)="onItemClick(item.ShipmentNo)"
 >
   <div class="column">
     <div class="row-header">{{ item.OrderNo }}</div>
@@ -9,7 +9,7 @@
       {{ item.ShipmentLines.TotalNumberOfRecords }} Products
     </div>
     <div class="row">Carrier: {{ item.ScacAndService }}</div>
-    <div class="row" (click)="onItemClick(item.AssignedToUserId)">
+    <div class="row" (click)="onItemClick(item.ShipmentNo)">
       Shipment # <span class="hyperlink">{{ item.ShipmentNo }}</span>
     </div>
   </div>
